@@ -2,6 +2,8 @@
 
 Kick exmaple project using latest python stuffs to make a click based CLI.
 
+You more just want to wget / cp the file into your project and the pyproject.toml as a starting point.
+
 ## Installation
 
 ```console
