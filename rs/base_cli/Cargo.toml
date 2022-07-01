@@ -1,7 +1,0 @@
-[package]
-name = "base_cli"
-version = "0.6.9"
-edition = "2022"
-
-[dependencies]
-# TOOD
