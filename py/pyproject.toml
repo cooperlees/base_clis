@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "base_cli"
+description = "A starting point for a base click cli"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Cooper Lees", email = "me@cooperlees.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+]
+dependencies = []
+dynamic = ["version"]
+
+[project.urls]
+Documentation = "https://github.com/cooperlees/base_cli/py#readme"
+Issues = "https://github.com/cooperlees/base_cli/issues"
+Source = "https://github.com/cooperlees/base_cli/py"
+
+[tool.hatch.version]
+path = "base_cli.py"
+
+[tool.hatch.build.targets.sdist]
+[tool.hatch.build.targets.wheel]
+
+[tool.hatch.envs.default]
+dependencies = ["click"]
+
+[[tool.hatch.envs.test.matrix]]
+python = ["38", "39", "310"]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = []
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
