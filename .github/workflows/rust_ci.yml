@@ -1,0 +1,32 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build_and_test:
+    name: Rust Cargo project CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Cargo format
+        working-directory: ./rs
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+
+      - name: Cargo test
+        working-directory: ./rs
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+
+      - name: Cargo release + all feature build
+        working-directory: ./rs
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release --all-features

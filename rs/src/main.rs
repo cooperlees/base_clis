@@ -1,8 +1,9 @@
 use clap::Parser;
 use log::info;
 
-/// Clap CLI Args struct
+/// Clap CLI Args struct with metadata in help output
 #[derive(Debug, Parser)]
+#[clap(author, version, about, long_about = None)]
 struct Cli {
     #[clap(flatten)]
     verbose: clap_verbosity_flag::Verbosity,
