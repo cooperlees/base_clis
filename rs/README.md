@@ -1,4 +1,4 @@
-# base_cli
+# base_cli Rust
 
 Quick example project using latest rust stuffs to make a CLI.
 
@@ -11,10 +11,6 @@ cargo init .
 wget https://raw.githubusercontent.com/cooperlees/base_clis/main/rs/Cargo.toml
 wget https://raw.githubusercontent.com/cooperlees/base_clis/main/rs/src/main.rs -O src/main.rs
 ```
-
-### Optional CI
-
-Copy the [Github Actions](.github/) and tests to get some base coverage of your code.
 
 ## License
 
