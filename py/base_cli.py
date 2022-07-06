@@ -5,7 +5,7 @@
 import asyncio
 import logging
 import sys
-from typing import Any, Optional, Union
+from typing import Any, Union
 
 import click
 
@@ -14,7 +14,7 @@ LOG: logging.Logger = logging.getLogger(__name__)
 
 
 def _handle_debug(
-    ctx: Optional[click.core.Context],
+    ctx: Union[click.core.Context, None],
     param: Union[click.core.Option, click.core.Parameter, None],
     debug: Union[bool, int, str],
 ) -> Union[bool, int, str]:
@@ -27,7 +27,7 @@ def _handle_debug(
     return debug
 
 
-async def async_main(**kwargs: Any) -> int:
+async def async_main(debug: bool) -> int:
     return 0
 
 
