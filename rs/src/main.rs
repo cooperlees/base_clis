@@ -1,4 +1,5 @@
 use clap::Parser;
+use clap_verbosity_flag::InfoLevel;
 use log::info;
 
 /// Clap CLI Args struct with metadata in help output
@@ -6,7 +7,7 @@ use log::info;
 #[clap(author, version, about, long_about = None)]
 struct Cli {
     #[clap(flatten)]
-    verbose: clap_verbosity_flag::Verbosity,
+    verbose: clap_verbosity_flag::Verbosity<InfoLevel>,
 }
 
 use anyhow::Result;
