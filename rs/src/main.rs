@@ -8,6 +8,9 @@ const LONG_ABOUT: &str = "This is a base CLI to use with new rust projects";
 #[derive(Debug, Parser)]
 #[clap(author, version, about, long_about = LONG_ABOUT)]
 struct Cli {
+    /// Number that brings you luck
+    #[clap(short, long, value_parser, default_value_t = 69)]
+    lucky_number: u8,
     #[clap(flatten)]
     verbose: clap_verbosity_flag::Verbosity<InfoLevel>,
 }
@@ -20,7 +23,7 @@ fn main() -> Result<()> {
         .filter_level(args.verbose.log_level_filter())
         .init();
 
-    info!("Cooper's amazing base CLI");
+    info!("Cooper's amazing base CLI. Args: {:?}", args);
 
     Ok(())
 }
