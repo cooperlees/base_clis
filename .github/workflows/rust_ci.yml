@@ -46,8 +46,3 @@ jobs:
         with:
           command: build
           args: --manifest-path rs/Cargo.toml --release --all-features
-
-      - name: Show development + release build sizes
-        run: |
-          ls -lh target/debug/
-          ls -lh target/release/
