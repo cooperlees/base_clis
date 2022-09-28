@@ -17,6 +17,12 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Verify Cargo.toml
+        uses: actions-rs/cargo@v1
+        with:
+          command: verify-project
+          args: --manifest-path rs/Cargo.toml
+
       - name: Cargo format
         uses: actions-rs/cargo@v1
         with:
