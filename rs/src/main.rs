@@ -1,3 +1,4 @@
+use anyhow::Result;
 use clap::Parser;
 use clap_verbosity_flag::InfoLevel;
 use log::info;
@@ -14,8 +15,6 @@ struct Cli {
     #[clap(flatten)]
     verbose: clap_verbosity_flag::Verbosity<InfoLevel>,
 }
-
-use anyhow::Result;
 
 fn main() -> Result<()> {
     let args = Cli::parse();
