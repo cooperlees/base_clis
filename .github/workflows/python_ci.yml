@@ -8,7 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ["3.11.0-rc - 3.11"]
+        python-version: ["3.11", "3.12"]
         os: [macOS-latest, ubuntu-latest, windows-latest]
 
     steps:
@@ -17,6 +17,7 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+        allow-prereleases: true
 
     - name: Print Python Version
       run: python --version --version && which python
