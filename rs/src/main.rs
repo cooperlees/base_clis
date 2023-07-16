@@ -1,7 +1,13 @@
 use anyhow::Result;
 use clap::Parser;
-use clap_verbosity_flag::InfoLevel;
-use log::info;
+use tracing::debug;
+use tracing::info;
+use tracing_glog::Glog;
+use tracing_glog::GlogFields;
+use tracing_subscriber::filter::LevelFilter;
+use tracing_subscriber::fmt;
+use tracing_subscriber::prelude::*;
+use tracing_subscriber::Registry;
 
 const LONG_ABOUT: &str = "This is a base CLI to use with new rust projects";
 
@@ -9,20 +15,37 @@ const LONG_ABOUT: &str = "This is a base CLI to use with new rust projects";
 #[derive(Debug, Parser)]
 #[clap(author, version, about, long_about = LONG_ABOUT)]
 struct Cli {
+    /// Enable debug logging
+    #[clap(short, long)]
+    debug: bool,
+
     /// Number that brings you luck
     #[clap(short, long, value_parser, default_value_t = 69)]
     lucky_number: u8,
-    #[clap(flatten)]
-    verbose: clap_verbosity_flag::Verbosity<InfoLevel>,
+}
+
+fn setup_logging(debug: bool) {
+    let log_filter_level = match debug {
+        true => LevelFilter::DEBUG,
+        false => LevelFilter::INFO,
+    };
+    let fmt = fmt::Layer::default()
+        .with_writer(std::io::stderr)
+        .event_format(Glog::default().with_timer(tracing_glog::LocalTime::default()))
+        .fmt_fields(GlogFields)
+        .with_filter(log_filter_level);
+
+    let subscriber = Registry::default().with(fmt);
+    tracing::subscriber::set_global_default(subscriber)
+        .expect("Unable to set global tracing subscriber");
 }
 
 fn main() -> Result<()> {
     let args = Cli::parse();
-    env_logger::Builder::new()
-        .filter_level(args.verbose.log_level_filter())
-        .init();
+    setup_logging(args.debug);
 
     info!("Cooper's amazing base CLI. Args: {:?}", args);
+    debug!("Debug logging enabled");
 
     Ok(())
 }
