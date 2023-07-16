@@ -31,7 +31,9 @@ async def async_main(debug: bool) -> int:
     return 0
 
 
-@click.command(context_settings={"help_option_names": ["-h", "--help"]})
+# Some typing stub issue I can't work out - https://github.com/pallets/click/issues/2558
+# Fix for 8.1.6 dosen't seem to fix me - To look into
+@click.command(context_settings={"help_option_names": ["-h", "--help"]})  # type: ignore
 @click.option(
     "--debug",
     is_flag=True,
