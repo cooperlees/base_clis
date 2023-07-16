@@ -1,6 +1,14 @@
 name: Rust CI
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - .github/workflows/rust_ci.yml
+      - rs/**
+  pull_request:
+    paths:
+      - .github/workflows/rust_ci.yml
+      - rs/**
 
 jobs:
   build_and_test:
