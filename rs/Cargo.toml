@@ -8,5 +8,5 @@ anyhow = "1.0"
 clap = { version = "4.5.4", features = ["derive"] }
 tracing = "0.1"
 tracing-core = "0.1.32"
-tracing-glog = "0.3"
+tracing-glog = "0.4"
 tracing-subscriber = "0.3.18"
