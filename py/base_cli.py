@@ -31,9 +31,7 @@ async def async_main(debug: bool) -> int:
     return 0
 
 
-# Some typing stub issue I can't work out - https://github.com/pallets/click/issues/2558
-# Fix for 8.1.6 dosen't seem to fix me - To look into
-@click.command(context_settings={"help_option_names": ["-h", "--help"]})  # type: ignore
+@click.command(context_settings={"help_option_names": ["-h", "--help"]})
 @click.option(
     "--debug",
     is_flag=True,
@@ -42,7 +40,7 @@ async def async_main(debug: bool) -> int:
     help="Turn on debug logging",
 )
 @click.pass_context
-def main(ctx: click.core.Context, **kwargs: Any) -> None:
+def main(ctx: click.core.Context, /, **kwargs: Any) -> None:
     LOG.debug(f"Starting {sys.argv[0]}")
     ctx.exit(asyncio.run(async_main(**kwargs)))
 
