@@ -35,8 +35,8 @@ jobs:
 
     - name: uv sync the project + install test deps
       run: |
-        uv sync --locked --all-extras --dev --project py --system
-        uv pip install black mypy
+        uv sync --locked --all-extras --dev --project py
+        uv pip install black mypy --system
 
     - name: Run tests
       run: |
