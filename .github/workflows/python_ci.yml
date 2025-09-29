@@ -41,7 +41,7 @@ jobs:
     - name: Run tests + show coverage
       run: |
         uv run --project py coverage run py/src/tests.py
-        uv run coverage report
+        uv run coverage report --show-missing
 
     - name: Run mypy strict
       run: |
