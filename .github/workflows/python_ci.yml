@@ -35,17 +35,17 @@ jobs:
 
     - name: uv sync the project + install test deps
       run: |
-        uv sync --locked --all-extras --dev --project py --active
+        uv sync --locked --all-extras --dev --project py --system
         uv pip install black mypy
 
     - name: Run tests
       run: |
-        uv run --active --project py py/src/tests.py
+        uv run --project py py/src/tests.py
 
     - name: Run mypy strict
       run: |
-        uv run --active mypy --strict py/src/
+        uv run mypy --strict py/src/
 
     - name: Run black preview
       run: |
-        uv run --active black --preview py/
+        uv run black --preview py/
