@@ -5,7 +5,7 @@ import unittest
 
 from click.testing import CliRunner
 
-from base_cli import _handle_debug, async_main, main
+from base_cli.main import _handle_debug, async_main, main
 
 
 class TestCLI(unittest.TestCase):
