@@ -30,25 +30,22 @@ jobs:
     - name: Print Python Version
       run: python --version --version && which python
 
-    - name: Update pip, setuptools + wheels
-      run: |
-        python -m pip install --upgrade pip setuptools wheel
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
 
-    - name: Install and Run Unitests via coverage
+    - name: uv sync the project + install test deps
       run: |
-        python -m pip install coverage py/
-        coverage run py/tests.py
+        uv sync --locked --all-extras --dev --project py --active
+        uv pip install black mypy
 
-    - name: Show coverage
+    - name: Run tests
       run: |
-        coverage report
+        uv run --active --project py py/src/tests.py
 
     - name: Run mypy strict
       run: |
-        python -m pip install mypy
-        mypy --strict py/base_cli.py
+        uv run --active mypy --strict py/src/
 
     - name: Run black preview
       run: |
-        python -m pip install black
-        black --preview py/
+        uv run --active black --preview py/
