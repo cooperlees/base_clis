@@ -31,7 +31,7 @@ jobs:
       run: python --version --version && which python
 
     - name: Install uv
-      uses: astral-sh/setup-uv@v6
+      uses: astral-sh/setup-uv@v7
 
     - name: uv sync the project + install test deps
       run: |
