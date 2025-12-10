@@ -36,7 +36,7 @@ jobs:
     - name: uv sync the project + install test deps
       run: |
         uv sync --locked --all-extras --dev --project py
-        uv pip install --system black coverage mypy
+        uv pip install --system black coverage mypy ty
 
     - name: Run tests + show coverage
       run: |
