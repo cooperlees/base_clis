@@ -37,6 +37,7 @@ jobs:
       run: |
         uv sync --locked --all-extras --dev --project py
         uv pip install --system black coverage mypy ty
+        uv pip install --system -e py
 
     - name: Run tests + show coverage
       run: |
@@ -49,7 +50,7 @@ jobs:
 
     - name: Run ty strict
       run: |
-        uv run ty check -v py/src/
+        uv run --project py ty check -v py/src/
 
     - name: Run black preview
       run: |
