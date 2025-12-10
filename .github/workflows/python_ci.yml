@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ["3.12", "3.13"]
+        python-version: ["3.13", "3.14"]
         os: [macOS-latest, ubuntu-latest, windows-latest]
 
     steps:
@@ -36,7 +36,8 @@ jobs:
     - name: uv sync the project + install test deps
       run: |
         uv sync --locked --all-extras --dev --project py
-        uv pip install --system black coverage mypy
+        uv pip install --system black coverage mypy ty
+        uv pip install --system -e py
 
     - name: Run tests + show coverage
       run: |
@@ -46,6 +47,10 @@ jobs:
     - name: Run mypy strict
       run: |
         uv run mypy --strict py/src/
+
+    - name: Run ty strict
+      run: |
+        uv run --project py ty check -v py/src/
 
     - name: Run black preview
       run: |

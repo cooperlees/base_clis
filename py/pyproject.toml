@@ -40,3 +40,7 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+
+[tool.ty]
+include = ["src"]
+strict = true
