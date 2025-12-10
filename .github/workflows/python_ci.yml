@@ -47,6 +47,10 @@ jobs:
       run: |
         uv run mypy --strict py/src/
 
+    - name: Run ty strict
+      run: |
+        uv run ty check -v py/src/
+
     - name: Run black preview
       run: |
         uv run black --preview py/
